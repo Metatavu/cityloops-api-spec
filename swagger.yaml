@@ -422,7 +422,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /users:
     get:
       operationId: listUsers
@@ -617,7 +617,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-                
+
   /searchHounds:
     get:
       operationId: listSearchHounds
@@ -883,7 +883,7 @@ components:
           format: date-time
           description: Date modified
           readOnly: true
-    
+
     Metadata:
       type: object
       description: Items metadata/non-required information
@@ -924,7 +924,7 @@ components:
           type: number
           format: double
           description: Longitude number
-    
+
     Condition:
       type: string
       description: Condition enum
@@ -933,7 +933,7 @@ components:
         - GOOD
         - FAIR
         - BROKEN
-    
+
     Measurements:
       type: object
       description: Item measurements
@@ -953,7 +953,7 @@ components:
         unit:
           type: string
           description: Measurement unit
-    
+
     Volume:
       type: object
       description: Item volume information
@@ -965,7 +965,7 @@ components:
         unit:
           type: string
           description: Volume unit
-          
+
     Certificates:
       type: object
       description: Item certificate information
@@ -980,7 +980,7 @@ components:
           items:
             type: string            
           description: List of certificate stamps
-          
+
     Seller:
       type: object
       description: Item seller
@@ -1080,7 +1080,7 @@ components:
           format: date-time
           description: Date modified
           readOnly: true
-          
+
     SearchHound:
       type: object
       description: Search hound object
@@ -1148,7 +1148,7 @@ components:
           format: date-time
           description: Date modified
           readOnly: true
-  
+
     Error:
       type: object
       required:
