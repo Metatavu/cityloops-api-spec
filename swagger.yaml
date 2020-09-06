@@ -26,6 +26,201 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
+  /categories:
+    get:
+      operationId: listCategories
+      summary: List categories.
+      description: Lists categories
+      tags:
+        - Categories
+      responses:
+        "200":
+          description: A category list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createCategory
+      summary: Create a category.
+      description: Creates new category
+      tags:
+        - Categories
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Category"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created category
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Category"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /categories/{categoryId}:
+    get:
+      operationId: findCategory
+      summary: Find a category.
+      description: Finds a category by id
+      tags:
+        - Categories
+      parameters:
+        - name: categoryId
+          required: true
+          in: path
+          description: category id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: A category
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Category"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateCategory
+      summary: Updates a category.
+      description: Updates category
+      tags:
+        - Categories
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Category"
+        description: Payload
+        required: true
+      parameters:
+        - name: categoryId
+          required: true
+          in: path
+          description: category id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated category
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Category"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteCategory
+      summary: Deletes a category.
+      description: Deletes category
+      tags:
+        - Categories
+      parameters:
+        - name: categoryId
+          required: true
+          in: path
+          description: category id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
   /items:
     get:
       operationId: listItems
@@ -34,9 +229,9 @@ paths:
       tags:
         - Items
       parameters:
-        - name: sellerId
+        - name: userId
           in: query
-          description: query by seller id
+          description: query by user id
           schema:
             type: string
             format: uuid
@@ -203,201 +398,6 @@ paths:
           required: true
           in: path
           description: item id
-          schema:
-            type: string
-            format: uuid
-      responses:
-        "204":
-          description: Success
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-
-  /sellers:
-    get:
-      operationId: listSellers
-      summary: List sellers.
-      description: Lists sellers
-      tags:
-        - Sellers
-      responses:
-        "200":
-          description: A seller list
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Seller"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    post:
-      operationId: createSeller
-      summary: Create a seller.
-      description: Creates new seller
-      tags:
-        - Sellers
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Seller"
-        description: Payload
-        required: true
-      responses:
-        "200":
-          description: Created seller
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Seller"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-
-  /sellers/{sellerId}:
-    get:
-      operationId: findSeller
-      summary: Find a seller.
-      description: Finds a seller by id
-      tags:
-        - Sellers
-      parameters:
-        - name: sellerId
-          required: true
-          in: path
-          description: seller id
-          schema:
-            type: string
-            format: uuid
-      responses:
-        "200":
-          description: A seller
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Seller"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    put:
-      operationId: updateSeller
-      summary: Updates a seller.
-      description: Updates seller
-      tags:
-        - Sellers
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Seller"
-        description: Payload
-        required: true
-      parameters:
-        - name: sellerId
-          required: true
-          in: path
-          description: seller id
-          schema:
-            type: string
-            format: uuid
-      responses:
-        "200":
-          description: Updated seller
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Seller"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    delete:
-      operationId: deleteSeller
-      summary: Deletes a seller.
-      description: Deletes seller
-      tags:
-        - Sellers
-      parameters:
-        - name: sellerId
-          required: true
-          in: path
-          description: seller id
           schema:
             type: string
             format: uuid
@@ -820,6 +820,38 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
+  
+    Category:
+      type: object
+      description: Item category object
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Category name
+        creatorId:
+          type: string
+          format: uuid
+          readOnly: true
+        lastModifierId:
+          type: string
+          format: uuid
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          description: Created date
+          readOnly: true
+        modifiedAt:
+          type: string
+          format: date-time
+          description: Date modified
+          readOnly: true
 
     Item:
       type: object
@@ -828,7 +860,7 @@ components:
         - title
         - thumbnailUrl
         - categories
-        - sellerId
+        - userId
         - onlyForCompanies
         - images
         - metadata
@@ -848,11 +880,12 @@ components:
           type: array
           items:
             type: string
-          description: Item categories
-        sellerId:
+            format: uuid
+          description: List of item category ids
+        userId:
           type: string
           format: uuid
-          description: Id of the seller
+          description: Id of the user
         onlyForCompanies:
           type: boolean
           description: Is item available only for companies
@@ -897,6 +930,9 @@ components:
           type: number
           format: double
           description: Item price
+        priceUnit:
+          type: string
+          description: Price unit. For example €, €/m, €/m3
         condition:
           $ref: '#/components/schemas/Condition'
         measurements:
@@ -981,61 +1017,16 @@ components:
             type: string            
           description: List of certificate stamps
 
-    Seller:
-      type: object
-      description: Item seller
-      required:
-        - name
-        - address
-        - email
-        - phoneNumber
-        - privateSeller
-      properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-        name:
-          type: string
-          description: Seller name
-        address:
-          type: string
-          description: Seller address
-        email:
-          type: string
-          description: Seller email
-        phoneNumber:
-          type: string
-          description: Seller phone number
-        privateSeller:
-          type: boolean
-          description: Is seller private or company
-        creatorId:
-          type: string
-          format: uuid
-          readOnly: true
-        lastModifierId:
-          type: string
-          format: uuid
-          readOnly: true
-        createdAt:
-          type: string
-          format: date-time
-          description: Created date
-          readOnly: true
-        modifiedAt:
-          type: string
-          format: date-time
-          description: Date modified
-          readOnly: true
-
     User:
       type: object
       description: User object
       required:
         - name
+        - address
         - email
-        - verified
+        - phoneNumber
+        - companyAccount
+        - role
       properties:
         id:
           type: string
@@ -1049,10 +1040,16 @@ components:
           description: User address
         email:
           type: string
+          format: email
           description: User email
         phoneNumber:
           type: string
           description: User phone number
+        companyAccount:
+          type: boolean
+          description: Is this user company account
+        role:
+          $ref: '#/components/schemas/UserRole'
         searchHounds:
           type: array
           items:
@@ -1080,6 +1077,14 @@ components:
           format: date-time
           description: Date modified
           readOnly: true
+          
+    UserRole:
+      type: string
+      description: User role
+      enum:
+        - ADMIN
+        - SELLER
+        - USER
 
     SearchHound:
       type: object
@@ -1098,13 +1103,14 @@ components:
           type: array
           items:
             type: string
-          description: List of categories
-        sellers:
+            format: uuid
+          description: List of category ids
+        users:
           type: array
           items:
             type: string
             format: uuid
-          description: List of seller ids
+          description: List of user ids
         minPrice:
           type: number
           format: double
