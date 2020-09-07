@@ -898,6 +898,10 @@ components:
             description: Image URL
         metadata:
           $ref: '#/components/schemas/Metadata'
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemProperty'
         creatorId:
           type: string
           format: uuid
@@ -916,6 +920,20 @@ components:
           format: date-time
           description: Date modified
           readOnly: true
+    
+    ItemProperty:
+      type: object
+      description: Key value pairs for items
+      required: 
+        - key
+        - value
+      properties:
+        key:
+          type: string
+          description: Property key
+        value:
+          type: string
+          description: Property value
 
     Metadata:
       type: object
@@ -1136,6 +1154,10 @@ components:
           $ref: '#/components/schemas/Volume'
         condition:
           $ref: '#/components/schemas/Condition'
+        expires:
+          type: string
+          format: date-time
+          description: When seach hound expires
         creatorId:
           type: string
           format: uuid
