@@ -33,6 +33,13 @@ paths:
       description: Lists categories
       tags:
         - Categories
+      parameters:
+        - name: parentCategoryId
+          in: query
+          description: query by parent category id
+          schema:
+            type: string
+            format: uuid
       responses:
         "200":
           description: A category list
@@ -220,7 +227,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /items:
     get:
       operationId: listItems
@@ -820,7 +827,7 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-  
+
     Category:
       type: object
       description: Item category object
@@ -834,6 +841,10 @@ components:
         name:
           type: string
           description: Category name
+        parentCategoryId:
+          type: string
+          format: uuid
+          description: Parent category
         creatorId:
           type: string
           format: uuid
@@ -920,11 +931,11 @@ components:
           format: date-time
           description: Date modified
           readOnly: true
-    
+
     ItemProperty:
       type: object
       description: Key value pairs for items
-      required: 
+      required:
         - key
         - value
       properties:
@@ -1027,12 +1038,12 @@ components:
         documents:
           type: array
           items:
-            type: string            
+            type: string
           description: List of document URLs
         stamps:
           type: array
           items:
-            type: string            
+            type: string
           description: List of certificate stamps
 
     User:
@@ -1095,7 +1106,7 @@ components:
           format: date-time
           description: Date modified
           readOnly: true
-          
+
     UserRole:
       type: string
       description: User role
