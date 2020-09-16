@@ -869,11 +869,8 @@ components:
       description: List item
       required:
         - title
-        - thumbnailUrl
         - categories
-        - userId
         - onlyForCompanies
-        - images
         - metadata
       properties:
         id:
@@ -883,23 +880,15 @@ components:
         title:
           type: string
           description: Item title
-        thumbnailUrl:
-          type: string
-          format: url
-          description: URL path for thumbnail
-        categories:
-          type: array
-          items:
-            type: string
-            format: uuid
-          description: List of item category ids
-        userId:
+        category:
           type: string
           format: uuid
-          description: Id of the user
+          description: Item category id
         onlyForCompanies:
           type: boolean
           description: Is item available only for companies
+        metadata:
+          $ref: '#/components/schemas/Metadata'
         images:
           type: array
           description: List of image URLs
@@ -907,8 +896,10 @@ components:
             type: string
             format: url
             description: Image URL
-        metadata:
-          $ref: '#/components/schemas/Metadata'
+        thumbnailUrl:
+          type: string
+          format: url
+          description: URL path for thumbnail
         properties:
           type: array
           items:
