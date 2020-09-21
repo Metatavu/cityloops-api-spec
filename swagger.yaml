@@ -242,6 +242,21 @@ paths:
           schema:
             type: string
             format: uuid
+        - name: firstResult
+          in: query
+          description: index of the first result
+          schema:
+            type: integer
+        - name: maxResults
+          in: query
+          description: limit results to this amount
+          schema:
+            type: integer
+        - name: sortByDateOldestFirst
+          in: query
+          description: Sort by date, return the oldest entry first
+          schema:
+            type: boolean
       responses:
         "200":
           description: An item list
