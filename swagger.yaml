@@ -257,11 +257,6 @@ paths:
           description: Sort by date, return the oldest entry first
           schema:
             type: boolean
-        - name: sortByDateNewestFirst
-          in: query
-          description: Sort by date, return the newest entry first
-          schema:
-            type: boolean
       responses:
         "200":
           description: An item list
