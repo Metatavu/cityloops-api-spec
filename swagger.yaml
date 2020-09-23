@@ -452,6 +452,17 @@ paths:
       description: Lists users
       tags:
         - Users
+      parameters:
+        - name: companyAccount
+          in: query
+          description: query by company account
+          schema:
+            type: boolean
+        - name: verified
+          in: query
+          description: list only verified accounts
+          schema:
+            type: boolean
       responses:
         "200":
           description: A user list
@@ -887,6 +898,7 @@ components:
         - categories
         - onlyForCompanies
         - metadata
+        - userId
       properties:
         id:
           type: string
@@ -919,6 +931,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ItemProperty'
+        userId:
+          type: string
+          format: uuid
+          description: User ID
         creatorId:
           type: string
           format: uuid
@@ -1061,7 +1077,6 @@ components:
         - email
         - phoneNumber
         - companyAccount
-        - role
       properties:
         id:
           type: string
@@ -1083,14 +1098,6 @@ components:
         companyAccount:
           type: boolean
           description: Is this user company account
-        role:
-          $ref: '#/components/schemas/UserRole'
-        searchHounds:
-          type: array
-          items:
-            type: string
-            format: uuid
-          description: List of users search hound ids
         verified:
           type: boolean
           description: Has this user been verified/allowed to use online payment
@@ -1112,14 +1119,6 @@ components:
           format: date-time
           description: Date modified
           readOnly: true
-
-    UserRole:
-      type: string
-      description: User role
-      enum:
-        - ADMIN
-        - SELLER
-        - USER
 
     SearchHound:
       type: object
