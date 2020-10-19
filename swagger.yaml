@@ -871,6 +871,10 @@ components:
           type: string
           format: uuid
           description: Parent category
+        properties:
+          type: array
+          items:
+            $ref: "#/components/schemas/CategoryProperty"
         creatorId:
           type: string
           format: uuid
@@ -889,6 +893,40 @@ components:
           format: date-time
           description: Date modified
           readOnly: true
+
+    CategoryProperty:
+      type: object
+      description: Category property object
+      required:
+        - name
+        - type
+        - required
+      properties:
+        name:
+          type: string
+          description: Property name
+        type:
+          $ref: "#/components/schemas/CategoryInputType"
+        required:
+          type: boolean
+          description: Is this property required
+        infoText:
+          type: string
+          description: Info text for UI
+        defaultValue:
+          type: string
+          description: Default value
+        unit:
+          type: string
+          description: Property unit if type is number
+
+    CategoryInputType:
+      type: string
+      description: Category input type enum
+      enum:
+        - TEXT
+        - TEXTAREA
+        - NUMBER
 
     Item:
       type: object
@@ -971,30 +1009,36 @@ components:
     Metadata:
       type: object
       description: Items metadata/non-required information
+      required:
+        - locationInfo
       properties:
+        locationInfo:
+          $ref: '#/components/schemas/LocationInfo'
         amount:
           type: integer
           format: int32
-        coordinates:
-          $ref: '#/components/schemas/Coordinates'
-        price:
-          type: number
-          format: double
-          description: Item price
-        priceUnit:
-          type: string
-          description: Price unit. For example €, €/m, €/m3
-        condition:
-          $ref: '#/components/schemas/Condition'
-        measurements:
-          $ref: '#/components/schemas/Measurements'
-        volume:
-          $ref: '#/components/schemas/Volume'
         certificates:
           $ref: '#/components/schemas/Certificates'
-        additionalInfo:
+
+    LocationInfo:
+      type: object
+      description: Location info object
+      properties:
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        description:
           type: string
-          description: Additional info for item
+          description: Location description
+        phone:
+          type: string
+          description: Phone number
+        email:
+          type: string
+          format: email
+          description: Email
+        address:
+          type: string
+          description: Address
 
     Coordinates:
       type: object
@@ -1020,26 +1064,6 @@ components:
         - GOOD
         - FAIR
         - BROKEN
-
-    Measurements:
-      type: object
-      description: Item measurements
-      properties:
-        height:
-          type: number
-          format: double
-          description: Item height
-        width:
-          type: number
-          format: double
-          description: Item width
-        depth:
-          type: number
-          format: double
-          description: Item depth
-        unit:
-          type: string
-          description: Measurement unit
 
     Volume:
       type: object
