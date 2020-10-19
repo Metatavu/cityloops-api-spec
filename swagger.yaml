@@ -922,7 +922,7 @@ components:
 
     CategoryInputType:
       type: string
-      description: Condition enum
+      description: Category input type enum
       enum:
         - TEXT
         - TEXTAREA
