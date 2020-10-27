@@ -1122,9 +1122,6 @@ components:
         companyAccount:
           type: boolean
           description: Is this user company account
-        keycloakId:
-          type: string
-          format: uuid
         verified:
           type: boolean
           description: Has this user been verified/allowed to use online payment
