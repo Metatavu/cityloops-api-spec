@@ -906,7 +906,7 @@ components:
           type: string
           description: Property name
         type:
-          $ref: "#/components/schemas/CategoryInputType"
+          $ref: "#/components/schemas/CategoryPropertyInputType"
         required:
           type: boolean
           description: Is this property required
@@ -920,9 +920,9 @@ components:
           type: string
           description: Property unit if type is number
 
-    CategoryInputType:
+    CategoryPropertyInputType:
       type: string
-      description: Condition enum
+      description: Category property input type enum
       enum:
         - TEXT
         - TEXTAREA
