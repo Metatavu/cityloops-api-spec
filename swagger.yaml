@@ -242,6 +242,12 @@ paths:
           schema:
             type: string
             format: uuid
+        - name: categoryId
+          in: query
+          description: Query by category id
+          schema:
+            type: string
+            format: uuid
         - name: firstResult
           in: query
           description: index of the first result
@@ -1123,7 +1129,7 @@ components:
           type: boolean
           description: Is this user company account
         password:
-            type: string
+          type: string
         verified:
           type: boolean
           description: Has this user been verified/allowed to use online payment
