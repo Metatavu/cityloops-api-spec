@@ -943,6 +943,8 @@ components:
         - onlyForCompanies
         - metadata
         - userId
+        - price
+        - priceUnit
       properties:
         id:
           type: string
@@ -979,6 +981,13 @@ components:
           type: string
           format: uuid
           description: User ID
+        price:
+          type: number
+          format: double
+          description: Price of the item
+        priceUnit:
+          type: string
+          description: Price unit of the item
         creatorId:
           type: string
           format: uuid
@@ -1128,6 +1137,13 @@ components:
         companyAccount:
           type: boolean
           description: Is this user company account
+        companyId:
+          type: string
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        officeInfo:
+          type: string
+          description: Location description
         password:
           type: string
         verified:
