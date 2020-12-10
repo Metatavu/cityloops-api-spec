@@ -945,6 +945,8 @@ components:
         - userId
         - price
         - priceUnit
+        - paymentMethod
+        - delivery
       properties:
         id:
           type: string
@@ -988,6 +990,16 @@ components:
         priceUnit:
           type: string
           description: Price unit of the item
+        paymentMethod:
+          type: string
+          description: Payment method
+        delivery:
+          type: boolean
+          description: Is item deliverable
+        deliveryPrice:
+          type: number
+          format: double
+          description: Price of delivery
         creatorId:
           type: string
           format: uuid
