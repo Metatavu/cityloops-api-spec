@@ -664,6 +664,24 @@ paths:
       description: Lists search hounds
       tags:
         - SearchHounds
+      parameters:
+        - name: userId
+          in: query
+          description: query by user id
+          schema:
+            type: string
+            format: uuid
+        - name: categoryId
+          in: query
+          description: query by category id
+          schema:
+            type: string
+            format: uuid
+        - name: notificationsOn
+          in: query
+          description: query by notification on boolean
+          schema:
+            type: boolean
       responses:
         "200":
           description: List of search hounds
@@ -1083,27 +1101,6 @@ components:
           format: double
           description: Longitude number
 
-    Condition:
-      type: string
-      description: Condition enum
-      enum:
-        - EXCELLENT
-        - GOOD
-        - FAIR
-        - BROKEN
-
-    Volume:
-      type: object
-      description: Item volume information
-      properties:
-        volume:
-          type: number
-          format: double
-          description: Item volume
-        unit:
-          type: string
-          description: Volume unit
-
     Certificates:
       type: object
       description: Item certificate information
@@ -1186,25 +1183,32 @@ components:
       required:
         - name
         - notificationsOn
-        - categories
+        - categoryId
+        - userId
+        - expires
       properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
         name:
           type: string
           description: Search hound name
         notificationsOn:
           type: boolean
-        categories:
-          type: array
-          items:
-            type: string
-            format: uuid
-          description: List of category ids
-        users:
-          type: array
-          items:
-            type: string
-            format: uuid
-          description: List of user ids
+          description: Are notifications on or off
+        categoryId:
+          type: string
+          format: uuid
+          description: Category id
+        userId:
+          type: string
+          format: uuid
+          description: Owner of this search hound
+        expires:
+          type: string
+          format: date-time
+          description: When seach hound expires
         minPrice:
           type: number
           format: double
@@ -1213,27 +1217,6 @@ components:
           type: number
           format: double
           description: Maximum price of the item
-        locationRange:
-          type: number
-          description: How far from users location/address search will try to find items
-        minAmount:
-          type: integer
-          format: int32
-          description: Minimum amount of items
-        maxAmount:
-          type: integer
-          format: int32
-          description: Maximum amount of items
-        minVolume:
-          $ref: '#/components/schemas/Volume'
-        maxVolume:
-          $ref: '#/components/schemas/Volume'
-        condition:
-          $ref: '#/components/schemas/Condition'
-        expires:
-          type: string
-          format: date-time
-          description: When seach hound expires
         creatorId:
           type: string
           format: uuid
