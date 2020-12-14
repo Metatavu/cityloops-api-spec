@@ -263,6 +263,11 @@ paths:
           description: Sort by date, return the oldest entry first
           schema:
             type: boolean
+        - name: includeExpired
+          in: query
+          description: includes expired items requires admin permissions if used to list other users than your items that are expired
+          schema:
+            type: boolean
       responses:
         "200":
           description: An item list
@@ -947,6 +952,7 @@ components:
         - priceUnit
         - paymentMethod
         - delivery
+        - expired
       properties:
         id:
           type: string
@@ -955,6 +961,14 @@ components:
         title:
           type: string
           description: Item title
+        expired:
+          type: boolean
+          description: Is item expired or not, settings this false will renew the item
+        expiresAt:
+          type: string
+          format: date-time
+          description: Date item expires
+          readOnly: true
         category:
           type: string
           format: uuid
