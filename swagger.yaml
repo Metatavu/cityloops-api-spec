@@ -457,50 +457,6 @@ paths:
                 $ref: "#/components/schemas/Error"
 
   /users:
-    get:
-      operationId: listUsers
-      summary: List users.
-      description: Lists users
-      tags:
-        - Users
-      parameters:
-        - name: companyAccount
-          in: query
-          description: query by company account
-          schema:
-            type: boolean
-        - name: verified
-          in: query
-          description: list only verified accounts
-          schema:
-            type: boolean
-      responses:
-        "200":
-          description: A user list
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/User"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
     post:
       operationId: createUser
       summary: Create a user.
