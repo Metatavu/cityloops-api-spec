@@ -968,6 +968,7 @@ components:
         - paymentMethod
         - delivery
         - expired
+        - itemType
       properties:
         id:
           type: string
@@ -1029,6 +1030,8 @@ components:
           type: number
           format: double
           description: Price of delivery
+        itemType:
+          $ref: '#/components/schemas/ItemType'
         creatorId:
           type: string
           format: uuid
@@ -1313,6 +1316,14 @@ components:
           format: date-time
           description: Date modified
           readOnly: true
+
+    ItemType:
+      type: string
+      description: Item type enum
+      enum:
+        - SELL
+        - BUY
+        - RENT
 
     Error:
       type: object
