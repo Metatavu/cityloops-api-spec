@@ -238,12 +238,14 @@ paths:
       parameters:
         - name: userId
           in: query
+          required: false
           description: query by user id
           schema:
             type: string
             format: uuid
         - name: categoryId
           in: query
+          required: false
           description: Query by category id
           schema:
             type: string
@@ -255,6 +257,7 @@ paths:
             type: integer
         - name: maxResults
           in: query
+          required: false
           description: limit results to this amount
           schema:
             type: integer
@@ -265,9 +268,16 @@ paths:
             type: boolean
         - name: includeExpired
           in: query
+          required: false
           description: includes expired items requires admin permissions if used to list other users than your items that are expired
           schema:
             type: boolean
+        - name: itemType
+          in: query
+          required: false
+          description: Filter by item type
+          schema:
+            $ref: "#/components/schemas/ItemType"
       responses:
         "200":
           description: An item list
