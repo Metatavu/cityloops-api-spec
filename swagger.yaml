@@ -1024,8 +1024,7 @@ components:
           format: uuid
           description: User ID
         price:
-          type: number
-          format: double
+          type: string
           description: Price of the item
         priceUnit:
           type: string
